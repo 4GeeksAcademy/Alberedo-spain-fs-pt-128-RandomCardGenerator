@@ -2,15 +2,15 @@ const palos = ["♦", "♥", "♠", "♣"]
 const valores = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 const rojas = ["♦", "♥"]
 let barajadoAutomatico = false
+let numero = document.querySelector(".numero")
+let palo = document.querySelectorAll(".palos")
 
 function cartaAleatoria() {
   let paloAleatorio = Math.floor(Math.random() * palos.length)
   let numeroAleatorio = Math.floor(Math.random() * valores.length)
 
-  let numero = document.querySelector(".numero")
   numero.textContent = valores[numeroAleatorio]
-
-  let palo = document.querySelectorAll(".palos")
+  
   for (let elem of palo) {
     elem.textContent = palos[paloAleatorio]
     if (rojas.includes(palos[paloAleatorio])) {
@@ -36,12 +36,20 @@ carta.addEventListener("click", function () {
 
 const selectorAltura = document.querySelector("#alturaCard")
 selectorAltura.addEventListener("input", function () {
-  carta.style.height = `${selectorAltura.value}px`
+  carta.style.height = `${selectorAltura.value}%`
+  numero.style.fontSize = `${30+selectorAltura.value*selectorAnchura.value/3}%`;
+  for (let elem of palo) {
+  elem.style.fontSize = `${50+selectorAltura.value*selectorAnchura.value/10}%`;
+  }
 })
 
 const selectorAnchura = document.querySelector("#anchoCard")
 selectorAnchura.addEventListener("input", function () {
-  carta.style.width = `${selectorAnchura.value}px`
+  carta.style.width = `${selectorAnchura.value}%`
+  numero.style.fontSize = `${30+selectorAnchura.value*selectorAltura.value/3}%`;
+  for (let elem of palo) {
+  elem.style.fontSize = `${50+selectorAltura.value*selectorAnchura.value/10}%`;
+  }
 })
 
 const switchBarajadoAuto = document.querySelector("#barajadoAuto")
@@ -55,11 +63,5 @@ if(switchBarajadoAuto.checked ==true){
 })
 
 window.onload = function () {
-
   barajaCarta()
-
-
-
-
-
 };
