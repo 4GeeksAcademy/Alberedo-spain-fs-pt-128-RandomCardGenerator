@@ -10,7 +10,7 @@ function cartaAleatoria() {
   let numeroAleatorio = Math.floor(Math.random() * valores.length)
 
   numero.textContent = valores[numeroAleatorio]
-  
+
   for (let elem of palo) {
     elem.textContent = palos[paloAleatorio]
     if (rojas.includes(palos[paloAleatorio])) {
@@ -37,29 +37,29 @@ carta.addEventListener("click", function () {
 const selectorAltura = document.querySelector("#alturaCard")
 selectorAltura.addEventListener("input", function () {
   carta.style.height = `${selectorAltura.value}%`
-  numero.style.fontSize = `${30+selectorAltura.value*selectorAnchura.value/3}%`;
+  numero.style.fontSize = `${30 + selectorAltura.value * selectorAnchura.value / 3}%`;
   for (let elem of palo) {
-  elem.style.fontSize = `${50+selectorAltura.value*selectorAnchura.value/10}%`;
+    elem.style.fontSize = `${50 + selectorAltura.value * selectorAnchura.value / 10}%`;
   }
 })
 
 const selectorAnchura = document.querySelector("#anchoCard")
 selectorAnchura.addEventListener("input", function () {
   carta.style.width = `${selectorAnchura.value}%`
-  numero.style.fontSize = `${30+selectorAnchura.value*selectorAltura.value/3}%`;
+  numero.style.fontSize = `${30 + selectorAnchura.value * selectorAltura.value / 3}%`;
   for (let elem of palo) {
-  elem.style.fontSize = `${50+selectorAltura.value*selectorAnchura.value/10}%`;
+    elem.style.fontSize = `${50 + selectorAltura.value * selectorAnchura.value / 10}%`;
   }
 })
 
 const switchBarajadoAuto = document.querySelector("#barajadoAuto")
-switchBarajadoAuto.addEventListener("change", function(){
-if(switchBarajadoAuto.checked ==true){
-  const autoBarajador = setInterval(barajaCarta, 10000);
-}else{
-  clearInterval(autoBarajador)
-}
-  
+switchBarajadoAuto.addEventListener("change", function () {
+  if (switchBarajadoAuto.checked == true) {
+    const autoBarajador = setInterval(barajaCarta, 10000);
+  } else {
+    clearInterval(autoBarajador)
+  }
+
 })
 
 window.onload = function () {
