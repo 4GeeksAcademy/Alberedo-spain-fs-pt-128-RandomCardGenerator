@@ -5,11 +5,10 @@ let barajadoAutomatico = false
 let numero = document.querySelector(".numero")
 let palo = document.querySelectorAll(".palos")
 
+//En esta función se eligen el palo y el numero de manera aleatoria y se insertan los valores en el DOM
 function cartaAleatoria() {
   let paloAleatorio = Math.floor(Math.random() * palos.length)
   let numeroAleatorio = Math.floor(Math.random() * valores.length)
-
-  numero.textContent = valores[numeroAleatorio]
 
   for (let elem of palo) {
     elem.textContent = palos[paloAleatorio]
@@ -19,10 +18,20 @@ function cartaAleatoria() {
       elem.classList.remove("text-danger")
     }
   }
+//Si el numero es un AS, se sustituye el 1 por el palo
+  if (!numeroAleatorio == 0) {
+    numero.textContent = valores[numeroAleatorio]
+    numero.classList.remove("text-danger")
+  }
+  else {
+    numero.textContent = palos[paloAleatorio]
+    rojas.includes(palos[paloAleatorio]) ? numero.classList.add("text-danger") : numero.classList.remove("text-danger")
+  }
 }
 
+//Durante 2 segundos genera cartas aleatorias para dar sensación de aleatoriedad
 function barajaCarta() {
-  const barajando = setInterval(cartaAleatoria, 50);
+  const barajando = setInterval(cartaAleatoria, 2);
 
   setTimeout(() => {
     clearInterval(barajando);
@@ -59,7 +68,6 @@ switchBarajadoAuto.addEventListener("change", function () {
   } else {
     clearInterval(autoBarajador)
   }
-
 })
 
 window.onload = function () {
